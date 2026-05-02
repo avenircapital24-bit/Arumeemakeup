@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>arumeemakeup · Dashboard YTD 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --noir:      #0d0810;
+  --plum:      #1e0f1a;
+  --plum2:     #2d1728;
+  --rose-gold: #c9936a;
+  --rose-lt:   #ddb89a;
+  --burgundy:  #7d1f3a;
+  --blush:     #f5ddd3;
+  --cream:     #fdf8f3;
+  --white:     #ffffff;
+  --ink:       #1a1015;
+  --mid:       #7a6472;
+  --border:    #ecddd6;
+  --sidebar-w: 260px;
+}
+
+html { font-size: 15px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════
+   SIDEBAR
+═══════════════════════════════ */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--noir);
+  position: fixed;
+  top: 0; left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  overflow: hidden;
+}
+
+/* decorative blob in sidebar */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, #7d1f3a33 0%, transparent 70%);
+  pointer-events: none;
+}
+.sidebar::after {
+  content: '';
+  position: absolute;
+  bottom: 40px; right: -40px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, #c9936a1a 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sidebar-top {
+  padding: 36px 28px 28px;
+  border-bottom: 1px solid #2a1e26;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidebar-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--rose-lt);
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+.sidebar-brand-tag {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #4a3542;
+  font-weight: 500;
+}
+
+.sidebar-revenue {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #2d1728, #1e1026);
+  border: 1px solid #3a2032;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.sidebar-revenue-lbl {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin-bottom: 6px;
+}
+.sidebar-revenue-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.sidebar-revenue-sub {
+  font-size: 11px;
+  color: #5a4050;
+  margin-top: 4px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-section-lbl {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #3a2834;
+  padding: 12px 12px 6px;
+  font-weight: 600;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #7a5a6a;
+  cursor: pointer;
+  text-align: left;
+  transition: all .2s;
+  position: relative;
+}
+.nav-btn:hover {
+  background: #1e1020;
+  color: #c8a89a;
+}
+.nav-btn.active {
+  background: linear-gradient(90deg, #2d1728, #251020);
+  color: var(--rose-lt);
+  font-weight: 600;
+  border-left: 2px solid var(--rose-gold);
+  padding-left: 12px;
+}
+.nav-btn .nav-icon {
+  font-size: 15px;
+  width: 20px;
+  flex-shrink: 0;
+  text-align: center;
+  opacity: .7;
+}
+.nav-btn.active .nav-icon { opacity: 1; }
+
+.sidebar-foot {
+  padding: 18px 28px;
+  border-top: 1px solid #1e1220;
+}
+.sidebar-foot-lbl {
+  font-size: 10px;
+  color: #3a2832;
+  letter-spacing: 1px;
+}
+.sidebar-foot-date {
+  font-size: 12px;
+  color: #5a4050;
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════
+   MAIN
+═══════════════════════════════ */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+}
+
+.page { display: none; animation: fadeIn .3s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════
+   PAGE HEADER
+═══════════════════════════════ */
+.page-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 52px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  right: -40px; top: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, #f5ddd322 0%, transparent 65%);
+  pointer-events: none;
+}
+.ph-eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.ph-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--ink);
+  line-height: 1;
+}
+.ph-desc {
+  font-size: 14px;
+  color: var(--mid);
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════
+   CONTENT
+═══════════════════════════════ */
+.content { padding: 40px 52px 80px; }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ═══════════════════════════════
+   KPI CARDS
+═══════════════════════════════ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.kpi-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(125,31,58,.08);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose-gold), var(--burgundy));
+}
+.kpi-card-accent {
+  background: linear-gradient(135deg, var(--burgundy) 0%, #5a1028 100%);
+  border-color: transparent;
+}
+.kpi-card-accent .kpi-lbl { color: #c8909a; }
+.kpi-card-accent .kpi-val { color: #fff; }
+.kpi-card-accent .kpi-note { color: #8a5060; }
+.kpi-card-accent::before { display: none; }
+
+.kpi-lbl {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.kpi-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--ink);
+  line-height: 1;
+}
+.kpi-note {
+  font-size: 12px;
+  color: var(--mid);
+  margin-top: 6px;
+}
+.kpi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #2a7a4f;
+  background: #e8f5ee;
+  border-radius: 20px;
+  padding: 2px 9px;
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════
+   STAT PANELS (2-col)
+═══════════════════════════════ */
+.panel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+}
+.panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* progress */
+.prog { margin-bottom: 22px; }
+.prog:last-child { margin-bottom: 0; }
+.prog-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.prog-key { font-size: 13px; font-weight: 600; color: var(--ink); }
+.prog-val { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--ink); }
+.prog-track { background: var(--blush); border-radius: 99px; height: 5px; overflow: hidden; margin-bottom: 5px; }
+.prog-fill { height: 5px; border-radius: 99px; background: linear-gradient(90deg, var(--burgundy), var(--rose-gold)); }
+.prog-sub { font-size: 11px; color: var(--mid); }
+
+/* ═══════════════════════════════
+   HIGHLIGHT STATS
+═══════════════════════════════ */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.hl-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hl-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.hl-body {}
+.hl-lbl { font-size: 11px; color: var(--mid); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.hl-val { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1; }
+.hl-sub { font-size: 12px; color: var(--mid); margin-top: 3px; }
+
+/* ═══════════════════════════════
+   MONTH CHART
+═══════════════════════════════ */
+.chart-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 32px 24px;
+  margin-bottom: 24px;
+}
+.chart-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: var(--ink);
+}
+
+.bar-chart-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 200px;
+  padding-bottom: 40px;
+  position: relative;
+}
+.bar-chart-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 40px; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
+}
+/* grid lines */
+.bar-chart-wrap::before {
+  content: '';
+  position: absolute;
+  bottom: 40px; left: 0; right: 0;
+  height: 75%;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent calc(25% - 0.5px),
+    var(--border) calc(25% - 0.5px),
+    var(--border) 25%
+  );
+  opacity: .5;
+  pointer-events: none;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  height: 100%;
+  position: relative;
+}
+.bar-fill-wrap {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: calc(100% - 40px);
+}
+.bar {
+  width: 68%;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, #a8334c 0%, #7d1f3a 100%);
+  position: relative;
+  cursor: pointer;
+  transition: opacity .2s;
+  min-height: 3px;
+}
+.bar:hover { opacity: .85; }
+.bar.dim { background: linear-gradient(180deg, #ddd0ca 0%, #c8b8b0 100%); }
+.bar.empty { background: var(--border); }
+.bar.peak { background: linear-gradient(180deg, var(--rose-gold) 0%, #a8602a 100%); }
+
+.bar-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--noir);
+  color: #fff;
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s;
+  z-index: 10;
+}
+.bar:hover .bar-tooltip { opacity: 1; }
+
+.bar-label {
+  position: absolute;
+  bottom: -28px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mid);
+  text-align: center;
+  width: 100%;
+}
+.bar-amount {
+  position: absolute;
+  top: -22px;
+  font-size: 11px;
+  color: var(--mid);
+  white-space: nowrap;
+  text-align: center;
+  width: 150%;
+  left: -25%;
+}
+
+/* ═══════════════════════════════
+   TABLE
+═══════════════════════════════ */
+.tbl-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.tbl-panel-header {
+  padding: 20px 28px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tbl-panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.tbl-panel-meta {
+  font-size: 12px;
+  color: var(--mid);
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  padding: 12px 18px;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mid);
+  background: #fdf8f8;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+td {
+  padding: 13px 18px;
+  border-bottom: 1px solid #faf4f0;
+  color: var(--ink);
+  font-size: 13px;
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fdf8f5; }
+.tfoot td {
+  background: var(--plum);
+  color: var(--rose-lt);
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+}
+
+/* ═══════════════════════════════
+   CATEGORY BARS
+═══════════════════════════════ */
+.cat-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cat-item { }
+.cat-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+.cat-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.cat-meta { font-size: 12px; color: var(--mid); }
+.cat-val { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+.cat-track { background: var(--blush); border-radius: 99px; height: 6px; overflow: hidden; margin-bottom: 4px; }
+.cat-fill { height: 6px; border-radius: 99px; }
+.cat-pct { font-size: 11px; color: var(--mid); }
+
+/* ═══════════════════════════════
+   BADGE
+═══════════════════════════════ */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-ok   { background: #e8f5ee; color: #1e6641; }
+.badge-pend { background: #fef3e2; color: #92400e; }
+
+/* ═══════════════════════════════
+   INSIGHT
+═══════════════════════════════ */
+.insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.insight-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--rose-gold));
+}
+.insight-card-full {
+  grid-column: span 2;
+}
+.insight-card-dark {
+  background: var(--plum);
+  border-color: #3a1e2e;
+}
+.insight-card-dark .insight-card-title { color: var(--rose-lt); }
+.insight-card-dark .insight-item-text { color: #9a7a88; }
+.insight-card-dark .insight-num { color: var(--rose-gold); }
+.insight-card-dark::before { display: none; }
+
+.insight-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.insight-card-dark .insight-card-title { border-color: #2d1826; }
+
+.insight-list { display: flex; flex-direction: column; gap: 14px; }
+.insight-item { display: flex; gap: 14px; align-items: flex-start; }
+.insight-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--burgundy);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+}
+.insight-item-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #3a2832;
+  padding-top: 4px;
+}
+.insight-item-text b { color: var(--ink); }
+
+/* ═══════════════════════════════
+   HOME HERO
+═══════════════════════════════ */
+.home-hero {
+  background: linear-gradient(135deg, var(--noir) 0%, #200f1e 60%, #2d1010 100%);
+  padding: 52px 52px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.home-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -80px;
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, #c9936a18 0%, transparent 65%);
+}
+.home-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 200px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, #7d1f3a22 0%, transparent 65%);
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: .95;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+.hero-title span { color: var(--rose-gold); font-style: italic; }
+.hero-sub {
+  font-size: 15px;
+  color: #5a3d4e;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-kpis {
+  display: flex;
+  gap: 0;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #2d1e28;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #160d14;
+}
+.hero-kpi {
+  flex: 1;
+  padding: 20px 24px;
+  border-right: 1px solid #2d1e28;
+}
+.hero-kpi:last-child { border-right: none; }
+.hero-kpi-lbl {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #4a3040;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.hero-kpi-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: #fff;
+  line-height: 1;
+}
+.hero-kpi-sub {
+  font-size: 11px;
+  color: #5a3d4e;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════
+   HOME NAV
+═══════════════════════════════ */
+.home-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 36px 52px 60px;
+}
+.home-nav-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+}
+.home-nav-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--rose-gold));
+  opacity: 0;
+  transition: opacity .2s;
+}
+.home-nav-card:hover {
+  border-color: var(--rose-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(125,31,58,.1);
+}
+.home-nav-card:hover::before { opacity: 1; }
+.home-nav-card:last-child { grid-column: span 1; }
+
+.nav-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--blush), #f0c8b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.nav-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.nav-card-desc {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+.nav-card-arrow {
+  position: absolute;
+  bottom: 22px; right: 22px;
+  font-size: 18px;
+  color: var(--border);
+  transition: color .2s, transform .2s;
+}
+.home-nav-card:hover .nav-card-arrow {
+  color: var(--rose-gold);
+  transform: translate(3px, -3px);
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media (max-width: 1100px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .home-nav-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .page-header, .content, .home-hero, .home-nav-grid { padding-left: 20px; padding-right: 20px; }
+  .hero-title { font-size: 48px; }
+  .panel-row, .insight-grid { grid-template-columns: 1fr; }
+  .insight-card-full { grid-column: span 1; }
+  .hero-kpis { flex-wrap: wrap; }
+  .hero-kpi { flex: 1 1 50%; border-bottom: 1px solid #2d1e28; }
+  .highlights { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-name">arumeemakeup</div>
+      <div class="sidebar-brand-tag">Beauty Analytics</div>
+    </div>
+    <div class="sidebar-revenue">
+      <div class="sidebar-revenue-lbl">Revenue YTD 2026</div>
+      <div class="sidebar-revenue-val">Rp 15.040.000</div>
+      <div class="sidebar-revenue-sub">37 jobs · 57 pax</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-lbl">Menu</div>
+    <button class="nav-btn active" onclick="go('home',this)">
+      <span class="nav-icon">⌂</span> Beranda
+    </button>
+    <button class="nav-btn" onclick="go('overview',this)">
+      <span class="nav-icon">◈</span> Overview
+    </button>
+    <button class="nav-btn" onclick="go('bulanan',this)">
+      <span class="nav-icon">▦</span> Kinerja Bulanan
+    </button>
+    <button class="nav-btn" onclick="go('kategori',this)">
+      <span class="nav-icon">◑</span> Breakdown Kategori
+    </button>
+    <button class="nav-btn" onclick="go('jobs',this)">
+      <span class="nav-icon">☰</span> Daftar Job
+    </button>
+    <button class="nav-btn" onclick="go('analisis',this)">
+      <span class="nav-icon">✦</span> Analisis
+    </button>
+  </nav>
+
+  <div class="sidebar-foot">
+    <div class="sidebar-foot-lbl">Data per</div>
+    <div class="sidebar-foot-date">2 Mei 2026</div>
+  </div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+
+<!-- ─────── HOME ─────── -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="hero-eyebrow">✦ Year-to-Date Performance Report · 2026</div>
+    <div class="hero-title">Rp 15.040.000<br><span>YTD 2026</span></div>
+    <div class="hero-sub">Laporan kinerja lengkap arumeemakeup · Januari – Juni 2026</div>
+
+    <div class="hero-kpis">
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Total Jobs</div>
+        <div class="hero-kpi-val">37</div>
+        <div class="hero-kpi-sub">job terlaksana</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Total Pax</div>
+        <div class="hero-kpi-val">57</div>
+        <div class="hero-kpi-sub">orang dilayani</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Sudah Lunas</div>
+        <div class="hero-kpi-val">26</div>
+        <div class="hero-kpi-sub">Rp 11.325.000</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Upcoming</div>
+        <div class="hero-kpi-val">11</div>
+        <div class="hero-kpi-sub">Rp 3.715.000</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Avg / Job</div>
+        <div class="hero-kpi-val">406rb</div>
+        <div class="hero-kpi-sub">per transaksi</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-nav-grid">
+    <div class="home-nav-card" onclick="go('overview', document.querySelectorAll('.nav-btn')[1])">
+      <div class="nav-card-icon">◈</div>
+      <div class="nav-card-title">Overview</div>
+      <div class="nav-card-desc">KPI utama, komposisi revenue, dan status pembayaran keseluruhan</div>
+      <div class="nav-card-arrow">↗</div>
+    </div>
+    <div class="home-nav-card" onclick="go('bulanan', document.querySelectorAll('.nav-btn')[2])">
+      <div class="nav-card-icon">▦</div>
+      <div class="nav-card-title">Kinerja Bulanan</div>
+      <div class="nav-card-desc">Chart dan tabel revenue per bulan, volume job dan pax</div>
+      <div class="nav-card-arrow">↗</div>
+    </div>
+    <div class="home-nav-card" onclick="go('kategori', document.querySelectorAll('.nav-btn')[3])">
+      <div class="nav-card-icon">◑</div>
+      <div class="nav-card-title">Breakdown Kategori</div>
+      <div class="nav-card-desc">Performa tiap jenis layanan dari Bride hingga Graduation</div>
+      <div class="nav-card-arrow">↗</div>
+    </div>
+    <div class="home-nav-card" onclick="go('jobs', document.querySelectorAll('.nav-btn')[4])">
+      <div class="nav-card-icon">☰</div>
+      <div class="nav-card-title">Daftar Job</div>
+      <div class="nav-card-desc">37 job lengkap dengan tanggal, kategori, pax, nilai, dan status</div>
+      <div class="nav-card-arrow">↗</div>
+    </div>
+    <div class="home-nav-card" onclick="go('analisis', document.querySelectorAll('.nav-btn')[5])">
+      <div class="nav-card-icon">✦</div>
+      <div class="nav-card-title">Analisis & Rekomendasi</div>
+      <div class="nav-card-desc">Insight mendalam dan langkah strategis untuk pertumbuhan bisnis</div>
+      <div class="nav-card-arrow">↗</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────── OVERVIEW ─────── -->
+<div class="page" id="page-overview">
+  <div class="page-header">
+    <div class="ph-eyebrow">✦ arumeemakeup · YTD 2026</div>
+    <div class="ph-title">Overview</div>
+    <div class="ph-desc">Ringkasan kinerja keseluruhan per 2 Mei 2026</div>
+  </div>
+  <div class="content">
+
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-card-accent">
+        <div class="kpi-lbl">Total Revenue YTD</div>
+        <div class="kpi-val">Rp 15.040.000</div>
+        <div class="kpi-note">Jan – Jun 2026</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">Fee Makeup</div>
+        <div class="kpi-val">Rp 13,4 jt</div>
+        <div class="kpi-note">89,1% dari total revenue</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">Biaya Transport</div>
+        <div class="kpi-val">Rp 1,64 jt</div>
+        <div class="kpi-note">10,9% dari total revenue</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">Rata-rata per Job</div>
+        <div class="kpi-val">Rp 406rb</div>
+        <div class="kpi-note">Rp 263rb per pax</div>
+      </div>
+    </div>
+
+    <div class="panel-row">
+      <div class="panel">
+        <div class="panel-title">Status Pembayaran</div>
+        <div class="prog">
+          <div class="prog-head">
+            <span class="prog-key">✓ Lunas</span>
+            <span class="prog-val">Rp 11.325.000</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill" style="width:75.3%"></div></div>
+          <div class="prog-sub">26 jobs · 75,3% dari total revenue</div>
+        </div>
+        <div class="prog">
+          <div class="prog-head">
+            <span class="prog-key">⏳ Upcoming</span>
+            <span class="prog-val">Rp 3.715.000</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill" style="width:24.7%;background:linear-gradient(90deg,#c8a88a,#ddb89a)"></div></div>
+          <div class="prog-sub">11 jobs · terjadwal dengan DP</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Komposisi Revenue</div>
+        <div class="prog">
+          <div class="prog-head">
+            <span class="prog-key">💄 Fee Makeup</span>
+            <span class="prog-val">Rp 13.400.000</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill" style="width:89.1%"></div></div>
+          <div class="prog-sub">89,1% · margin inti bisnis</div>
+        </div>
+        <div class="prog">
+          <div class="prog-head">
+            <span class="prog-key">🚗 Transport</span>
+            <span class="prog-val">Rp 1.640.000</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill" style="width:10.9%;background:linear-gradient(90deg,#c8a88a,#ddb89a)"></div></div>
+          <div class="prog-sub">10,9% · perlu standardisasi per zona</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <div class="hl-card">
+        <div class="hl-icon">🏆</div>
+        <div class="hl-body">
+          <div class="hl-lbl">Bulan Terkuat</div>
+          <div class="hl-val">April 2026</div>
+          <div class="hl-sub">14 jobs · Rp 5.605.000</div>
+        </div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-icon">💎</div>
+        <div class="hl-body">
+          <div class="hl-lbl">Kategori Dominan</div>
+          <div class="hl-val">Bridesmaid</div>
+          <div class="hl-sub">15 jobs · 38,4% revenue</div>
+        </div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-icon">👑</div>
+        <div class="hl-body">
+          <div class="hl-lbl">Nilai Tertinggi / Job</div>
+          <div class="hl-val">Rp 1.000.000</div>
+          <div class="hl-sub">Bride makeup · Hanifah</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─────── BULANAN ─────── -->
+<div class="page" id="page-bulanan">
+  <div class="page-header">
+    <div class="ph-eyebrow">✦ arumeemakeup · YTD 2026</div>
+    <div class="ph-title">Kinerja Bulanan</div>
+    <div class="ph-desc">Revenue, volume job, dan pax per bulan — Januari hingga Juni 2026</div>
+  </div>
+  <div class="content">
+
+    <div class="chart-panel">
+      <div class="chart-title">Revenue per Bulan</div>
+      <div class="bar-chart-wrap">
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar" style="height:33%">
+              <div class="bar-tooltip">Jan · 6 jobs · 10 pax<br>Rp 1.850.000</div>
+              <div class="bar-amount">1,85 jt</div>
+            </div>
+          </div>
+          <div class="bar-label">Jan</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar dim" style="height:4.1%">
+              <div class="bar-tooltip">Feb · 1 job · 1 pax<br>Rp 230.000</div>
+              <div class="bar-amount" style="color:#bbb">230rb</div>
+            </div>
+          </div>
+          <div class="bar-label" style="color:#bbb">Feb</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar empty" style="height:0.5%">
+              <div class="bar-tooltip">Maret · tidak ada job</div>
+              <div class="bar-amount" style="color:#ccc">—</div>
+            </div>
+          </div>
+          <div class="bar-label" style="color:#ccc">Mar</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar peak" style="height:100%">
+              <div class="bar-tooltip">Apr · 14 jobs · 22 pax<br>Rp 5.605.000 ↑ TERTINGGI</div>
+              <div class="bar-amount" style="color:var(--rose-gold);font-weight:600">5,60 jt ↑</div>
+            </div>
+          </div>
+          <div class="bar-label" style="color:var(--rose-gold);font-weight:700">Apr</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar" style="height:92%">
+              <div class="bar-tooltip">Mei · 12 jobs · 19 pax<br>Rp 5.155.000</div>
+              <div class="bar-amount">5,15 jt</div>
+            </div>
+          </div>
+          <div class="bar-label">Mei</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar" style="height:39.3%;background:linear-gradient(180deg,#9a7060,#6a4838)">
+              <div class="bar-tooltip">Jun · 4 jobs · 5 pax<br>Rp 2.200.000</div>
+              <div class="bar-amount">2,20 jt</div>
+            </div>
+          </div>
+          <div class="bar-label">Jun</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-panel">
+      <div class="tbl-panel-header">
+        <div class="tbl-panel-title">Detail per Bulan</div>
+        <div class="tbl-panel-meta">6 bulan · YTD 2026</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Bulan</th><th>Jobs</th><th>Pax</th><th>Fee Makeup</th><th>Transport</th><th>Total Revenue</th><th>Avg / Job</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Januari 2026</b></td><td>6</td><td>10</td><td>Rp 1.650.000</td><td>Rp 200.000</td><td><b>Rp 1.850.000</b></td><td>Rp 308.333</td></tr>
+          <tr><td><b>Februari 2026</b></td><td>1</td><td>1</td><td>Rp 200.000</td><td>Rp 30.000</td><td><b>Rp 230.000</b></td><td>Rp 230.000</td></tr>
+          <tr style="opacity:.45"><td><b>Maret 2026</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td><b>—</b></td><td>—</td></tr>
+          <tr style="background:#fff8f5">
+            <td><b style="color:var(--rose-gold)">April 2026 ↑</b></td>
+            <td><b style="color:var(--burgundy)">14</b></td><td>22</td>
+            <td>Rp 5.050.000</td><td>Rp 555.000</td>
+            <td><b style="color:var(--burgundy)">Rp 5.605.000</b></td>
+            <td>Rp 400.357</td>
+          </tr>
+          <tr><td><b>Mei 2026</b></td><td>12</td><td>19</td><td>Rp 4.500.000</td><td>Rp 655.000</td><td><b>Rp 5.155.000</b></td><td>Rp 429.583</td></tr>
+          <tr><td><b>Juni 2026</b></td><td>4</td><td>5</td><td>Rp 2.000.000</td><td>Rp 200.000</td><td><b>Rp 2.200.000</b></td><td>Rp 550.000</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td class="tfoot">Total YTD</td><td class="tfoot">37</td><td class="tfoot">57</td><td class="tfoot">Rp 13.400.000</td><td class="tfoot">Rp 1.640.000</td><td class="tfoot">Rp 15.040.000</td><td class="tfoot">Rp 406.486</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─────── KATEGORI ─────── -->
+<div class="page" id="page-kategori">
+  <div class="page-header">
+    <div class="ph-eyebrow">✦ arumeemakeup · YTD 2026</div>
+    <div class="ph-title">Breakdown Kategori</div>
+    <div class="ph-desc">Performa tiap jenis layanan makeup berdasarkan revenue, volume, dan rata-rata nilai</div>
+  </div>
+  <div class="content">
+
+    <div class="panel-row" style="margin-bottom:24px">
+      <div class="panel">
+        <div class="panel-title">Kontribusi Revenue</div>
+        <div class="cat-grid">
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Bridesmaid</div><div class="cat-val">Rp 5.770.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:100%;background:linear-gradient(90deg,var(--burgundy),var(--rose-gold))"></div></div>
+            <div class="cat-pct">38,4% · 15 jobs · 23 pax</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Graduation</div><div class="cat-val">Rp 2.385.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:41.3%;background:linear-gradient(90deg,#7d1f3a,#a84060)"></div></div>
+            <div class="cat-pct">15,9% · 7 jobs · 8 pax</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Family</div><div class="cat-val">Rp 2.000.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:34.7%;background:linear-gradient(90deg,#8a4030,#b06040)"></div></div>
+            <div class="cat-pct">13,3% · 3 jobs · 11 pax</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Photoshoot</div><div class="cat-val">Rp 1.300.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:22.5%;background:#c8a890"></div></div>
+            <div class="cat-pct">8,6% · 4 jobs · 5 pax</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Att. Event</div><div class="cat-val">Rp 1.235.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:21.4%;background:#c8a890"></div></div>
+            <div class="cat-pct">8,2% · 3 jobs · 4 pax</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name" style="color:var(--rose-gold)">Bride 👑</div><div class="cat-val" style="color:var(--rose-gold)">Rp 1.000.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:17.3%;background:linear-gradient(90deg,var(--rose-gold),var(--rose-lt))"></div></div>
+            <div class="cat-pct">6,6% · 1 job · avg tertinggi</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Mom (B/G)</div><div class="cat-val">Rp 1.050.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:18.2%;background:#c8a890"></div></div>
+            <div class="cat-pct">7,0% · 3 jobs · 4 pax</div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-head"><div class="cat-name">Pend. Grad</div><div class="cat-val">Rp 300.000</div></div>
+            <div class="cat-track"><div class="cat-fill" style="width:5.2%;background:#ddd0ca"></div></div>
+            <div class="cat-pct">2,0% · 1 job · 1 pax</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="kpi-card kpi-card-accent" style="flex:0">
+          <div class="kpi-lbl">Kategori Terbesar</div>
+          <div class="kpi-val">Bridesmaid</div>
+          <div class="kpi-note">40,5% dari total job</div>
+        </div>
+        <div class="kpi-card" style="flex:0">
+          <div class="kpi-lbl">Avg/Job Tertinggi</div>
+          <div class="kpi-val" style="color:var(--burgundy)">Rp 1.000.000</div>
+          <div class="kpi-note">Bride makeup · 1 job saja</div>
+        </div>
+        <div class="kpi-card" style="flex:0">
+          <div class="kpi-lbl">Avg/Job Terendah</div>
+          <div class="kpi-val">Rp 325.000</div>
+          <div class="kpi-note">Photoshoot · peluang naik</div>
+        </div>
+        <div class="kpi-card" style="flex:1;background:var(--blush);border-color:#ddb89a">
+          <div class="kpi-lbl" style="color:var(--burgundy)">Potensi Tersembunyi</div>
+          <div class="kpi-val" style="font-size:18px;color:var(--burgundy)">Bride & Att. Event</div>
+          <div class="kpi-note" style="color:#9a6858">Nilai per job tinggi tapi volume masih rendah — segmen yang perlu dikembangkan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-panel">
+      <div class="tbl-panel-header">
+        <div class="tbl-panel-title">Tabel Perbandingan Kategori</div>
+        <div class="tbl-panel-meta">8 kategori</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Kategori</th><th>Jobs</th><th>Pax</th><th>Total Revenue</th><th>% Rev</th><th>Avg / Job</th><th>Avg / Pax</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Bridesmaid</b></td><td>15</td><td>23</td><td><b>Rp 5.770.000</b></td><td>38,4%</td><td>Rp 384.667</td><td>Rp 250.870</td></tr>
+          <tr><td><b>Graduation</b></td><td>7</td><td>8</td><td><b>Rp 2.385.000</b></td><td>15,9%</td><td>Rp 340.714</td><td>Rp 298.125</td></tr>
+          <tr><td><b>Family</b></td><td>3</td><td>11</td><td><b>Rp 2.000.000</b></td><td>13,3%</td><td>Rp 666.667</td><td>Rp 181.818</td></tr>
+          <tr><td><b>Photoshoot</b></td><td>4</td><td>5</td><td><b>Rp 1.300.000</b></td><td>8,6%</td><td>Rp 325.000</td><td>Rp 260.000</td></tr>
+          <tr><td><b>Att. Event</b></td><td>3</td><td>4</td><td><b>Rp 1.235.000</b></td><td>8,2%</td><td>Rp 411.667</td><td>Rp 308.750</td></tr>
+          <tr style="background:#fff8f5"><td><b style="color:var(--burgundy)">Bride 👑</b></td><td>1</td><td>1</td><td><b style="color:var(--burgundy)">Rp 1.000.000</b></td><td>6,6%</td><td style="color:var(--burgundy);font-weight:700">Rp 1.000.000</td><td>Rp 1.000.000</td></tr>
+          <tr><td><b>Mom (B/G)</b></td><td>3</td><td>4</td><td><b>Rp 1.050.000</b></td><td>7,0%</td><td>Rp 350.000</td><td>Rp 262.500</td></tr>
+          <tr><td><b>Pend. Grad</b></td><td>1</td><td>1</td><td><b>Rp 300.000</b></td><td>2,0%</td><td>Rp 300.000</td><td>Rp 300.000</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td class="tfoot">Total</td><td class="tfoot">37</td><td class="tfoot">57</td><td class="tfoot">Rp 15.040.000</td><td class="tfoot">100%</td><td class="tfoot">Rp 406.486</td><td class="tfoot">Rp 263.860</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ─────── JOBS ─────── -->
+<div class="page" id="page-jobs">
+  <div class="page-header">
+    <div class="ph-eyebrow">✦ arumeemakeup · YTD 2026</div>
+    <div class="ph-title">Daftar Job</div>
+    <div class="ph-desc">37 job dari Januari hingga Juni 2026 — seluruh booking tercatat</div>
+  </div>
+  <div class="content">
+    <div class="tbl-panel">
+      <div class="tbl-panel-header">
+        <div class="tbl-panel-title">Semua Job YTD 2026</div>
+        <div class="tbl-panel-meta">37 jobs · 57 pax · Rp 15.040.000</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Client</th><th>Tanggal</th><th>Kategori</th><th>Pax</th><th>Total</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:var(--mid)">1</td><td><b>Erieza</b></td><td>2 Jan</td><td>Photoshoot</td><td>1</td><td>Rp 250.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">2</td><td><b>Cintya</b></td><td>17 Jan</td><td>Bridesmaid</td><td>1</td><td>Rp 230.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">3</td><td><b>Nabylla</b></td><td>17 Jan</td><td>Photoshoot</td><td>1</td><td>Rp 250.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">4</td><td><b>Adinda</b></td><td>18 Jan</td><td>Bridesmaid</td><td>1</td><td>Rp 270.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">5</td><td><b>Mahida</b></td><td>24 Jan</td><td>Family</td><td>5</td><td>Rp 650.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">6</td><td><b>Muthiah</b></td><td>31 Jan</td><td>Bridesmaid</td><td>1</td><td>Rp 200.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">7</td><td><b>Hanum</b></td><td>14 Feb</td><td>Bridesmaid</td><td>1</td><td>Rp 230.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">8</td><td><b>Clara</b></td><td>3 Apr</td><td>Bridesmaid</td><td>2</td><td>Rp 550.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">9</td><td><b>Tuta</b></td><td>4 Apr</td><td>Bridesmaid</td><td>2</td><td>Rp 500.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">10</td><td><b>Rihannisa</b></td><td>4 Apr</td><td>Bridesmaid</td><td>3</td><td>Rp 600.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">11</td><td><b>Tiara (Job Ika)</b></td><td>5 Apr</td><td>Bridesmaid</td><td>2</td><td>Rp 440.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">12</td><td><b>Ibu Besan Kak Tri</b></td><td>11 Apr</td><td>Mom Of Grooms</td><td>1</td><td>Rp 200.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">13</td><td><b>Muthia</b></td><td>12 Apr</td><td>Bridesmaid</td><td>2</td><td>Rp 500.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">14</td><td><b>Shania</b></td><td>12 Apr</td><td>Bridesmaid</td><td>1</td><td>Rp 300.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">15</td><td><b>Fatya</b></td><td>13 Apr</td><td>Graduation</td><td>1</td><td>Rp 280.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">16</td><td><b>Zaifa</b></td><td>18 Apr</td><td>Bridesmaid</td><td>1</td><td>Rp 350.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">17</td><td><b>Ami Fahira</b></td><td>18 Apr</td><td>Bridesmaid</td><td>1</td><td>Rp 250.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">18</td><td><b>Dwi Putri</b></td><td>19 Apr</td><td>Mom Bride</td><td>2</td><td>Rp 500.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">19</td><td><b>Carol</b></td><td>25 Apr</td><td>Bridesmaid</td><td>1</td><td>Rp 250.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">20</td><td><b>Nurul</b></td><td>25 Apr</td><td>Mom Of Grooms</td><td>1</td><td>Rp 350.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">21</td><td><b>Diah Ayu</b></td><td>26 Apr</td><td>Attending Event</td><td>2</td><td>Rp 535.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">22</td><td><b>Indira</b></td><td>1 Mei</td><td>Photoshoot</td><td>1</td><td>Rp 300.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">23</td><td><b>LW Wedding</b></td><td>2 Mei</td><td>Family</td><td>5</td><td>Rp 1.000.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">24</td><td><b>Ardita</b></td><td>3 Mei</td><td>Bridesmaid</td><td>3</td><td>Rp 750.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">25</td><td><b>Attya</b></td><td>7 Mei</td><td>Graduation</td><td>1</td><td>Rp 370.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">26</td><td><b>Verandine</b></td><td>7 Mei</td><td>Graduation</td><td>1</td><td>Rp 340.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">27</td><td><b>Adella</b></td><td>9 Mei</td><td>Family</td><td>1</td><td>Rp 350.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">28</td><td><b>Talitha</b></td><td>10 Mei</td><td>Att. Event</td><td>1</td><td>Rp 350.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">29</td><td><b>Julestari</b></td><td>12 Mei</td><td>Graduation</td><td>2</td><td>Rp 590.000</td><td><span class="badge badge-ok">Lunas</span></td></tr>
+          <tr><td style="color:var(--mid)">30</td><td><b>Sofia</b></td><td>13 Mei</td><td>Graduation</td><td>1</td><td>Rp 285.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">31</td><td><b>Job Silvi</b></td><td>16 Mei</td><td>Graduation</td><td>1</td><td>Rp 270.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">32</td><td><b>Adilla</b></td><td>30 Mei</td><td>Pend. Grad</td><td>1</td><td>Rp 300.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">33</td><td><b>Shafa</b></td><td>31 Mei</td><td>Graduation</td><td>1</td><td>Rp 250.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">34</td><td><b>Lina</b></td><td>6 Jun</td><td>Bridesmaid</td><td>1</td><td>Rp 350.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">35</td><td><b>Maola</b></td><td>6 Jun</td><td>Photoshoot</td><td>2</td><td>Rp 500.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr><td style="color:var(--mid)">36</td><td><b>Nurul</b></td><td>27 Jun</td><td>Att. Event</td><td>1</td><td>Rp 350.000</td><td><span class="badge badge-pend">Upcoming</span></td></tr>
+          <tr style="background:#fff8f5"><td style="color:var(--mid)">39</td><td><b>Hanifah</b></td><td>7 Jun</td><td>Bride 👑</td><td>1</td><td><b style="color:var(--burgundy)">Rp 1.000.000</b></td><td><span class="badge badge-ok">Lunas</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td class="tfoot" colspan="4">Total YTD 2026</td><td class="tfoot">57 pax</td><td class="tfoot">Rp 15.040.000</td><td class="tfoot">37 jobs</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ─────── ANALISIS ─────── -->
+<div class="page" id="page-analisis">
+  <div class="page-header">
+    <div class="ph-eyebrow">✦ arumeemakeup · YTD 2026</div>
+    <div class="ph-title">Analisis & Rekomendasi</div>
+    <div class="ph-desc">Pembacaan mendalam atas data YTD dan langkah strategis ke depan</div>
+  </div>
+  <div class="content">
+
+    <div class="insight-grid">
+      <div class="insight-card insight-card-dark">
+        <div class="insight-card-title">Kinerja Umum</div>
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-num">01</div>
+            <div class="insight-item-text" style="color:#8a6878">Revenue YTD <b style="color:var(--rose-gold)">Rp 15.040.000</b> dari 37 jobs — rata-rata Rp 406rb per job adalah angka solid untuk freelance makeup perorangan tanpa overhead tetap besar.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">02</div>
+            <div class="insight-item-text" style="color:#8a6878">89,1% revenue dari fee makeup murni. Struktur sehat — pendapatan tidak bergantung pada biaya sampingan.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">03</div>
+            <div class="insight-item-text" style="color:#8a6878">75,3% sudah lunas. Sisanya Rp 3.715.000 di pipeline dengan DP — <b style="color:var(--rose-gold)">cash flow aman dan pipeline aktif.</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-card-title">Tren Bulanan</div>
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-num">01</div>
+            <div class="insight-item-text"><b>Maret 2026 kosong total.</b> Tidak ada satu job pun masuk. Gap ini perlu diantisipasi tahun depan dengan promo early booking atau kolaborasi vendor.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">02</div>
+            <div class="insight-item-text"><b>Dua musim ramai teridentifikasi:</b> wedding season (April) dan graduation season (Mei). Ini bisa menjadi kerangka planning konten dan kapasitas sepanjang tahun.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">03</div>
+            <div class="insight-item-text">Juni sudah positif sebelum bulan mulai — ada 1 Bride job senilai <b>Rp 1.000.000 yang sudah lunas penuh.</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-card-title">Analisis Segmen</div>
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-num">01</div>
+            <div class="insight-item-text"><b>Bridesmaid adalah backbone</b> — 40,5% volume, 38,4% revenue. Namun avg per job hanya Rp 384rb. Ada ruang tarif naik seiring portofolio berkembang.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">02</div>
+            <div class="insight-item-text"><b>Bride adalah segmen premium yang underutilized.</b> 1 job Bride = nilai 4–5 job Bridesmaid. Menambah 3–4 Bride booking per tahun sudah sangat berdampak.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">03</div>
+            <div class="insight-item-text"><b>Family perlu repricing.</b> Avg per pax Rp 181rb adalah yang terendah. Pertimbangkan minimum charge per orang, bukan flat per sesi.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-card" style="border-top-color:var(--rose-gold)">
+        <div class="insight-card-title" style="color:var(--burgundy)">Rekomendasi Strategis</div>
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-num" style="color:var(--rose-gold)">→</div>
+            <div class="insight-item-text"><b>Isi gap Maret</b> dengan promo atau early booking campaign. Bulan mati = lost revenue yang bisa dihindari.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num" style="color:var(--rose-gold)">→</div>
+            <div class="insight-item-text"><b>Tingkatkan akuisisi Bride booking</b> lewat konten Instagram yang lebih tertarget dan portofolio bridal yang terpisah.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num" style="color:var(--rose-gold)">→</div>
+            <div class="insight-item-text"><b>Terapkan peak pricing di April–Mei.</b> Demand tinggi + slot terbatas = surcharge weekend sangat wajar dikenakan.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num" style="color:var(--rose-gold)">→</div>
+            <div class="insight-item-text"><b>Standardisasi biaya transport per zona</b> — pastikan tidak ada yang masih disubsidi sendiri dari 10,9% revenue itu.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<script>
+function go(id, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
